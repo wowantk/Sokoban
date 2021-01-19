@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Blocks 1.3
 //
-//  Created by Павел Бескоровайный on 28.12.2020.
+//  Created by mac on 28.12.2020.
 //
 
 import UIKit
