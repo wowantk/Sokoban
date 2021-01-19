@@ -74,7 +74,7 @@ class ViewController: UIViewController , MethodGame{
         
         if box.positionX == endGame.positionX && box.positionY == endGame.positionY {
 //            let controller = UIAlertController(title: "You win", message: "Win", preferredStyle: .alert)
-            HUD.flash(.success, delay: 1)
+            HUD.flash(.labeledSuccess(title: "Win", subtitle: "New game started"), onView: self.view, delay: 1, completion: nil)
 //            let action = UIAlertAction(title: "OK", style: .default, handler:nil)
 //            controller.addAction(action)
 //            self.present(controller, animated: true, completion: nil)
@@ -82,7 +82,10 @@ class ViewController: UIViewController , MethodGame{
             box.positionY = startingBox.positionY
             player.positionX = startingPlayer.positionX
             player.positionY = startingPlayer.positionY
+            countOfMoves = 0
+            scoreTab.text = "Moves: \(countOfMoves)"
             gameOutput.text = field
+            
             
         }
     

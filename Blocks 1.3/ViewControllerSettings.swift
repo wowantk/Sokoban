@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class ViewControllerSettings: UIViewController {
     @IBOutlet weak var personX: UITextField!
@@ -24,18 +25,21 @@ class ViewControllerSettings: UIViewController {
     }
     
     @IBAction func button(_ sender: Any) {
-        let pX = Int(personX.text! ) ?? 0
-        let pY = Int(personY.text! ) ?? 0
-        let bX = Int(boxX.text! ) ?? 0
-        let bY = Int(boxY.text! ) ?? 0
-        let tX = Int(targetX.text!) ?? 0
-        let tY = Int(targetY.text!) ?? 0
+        let pX = Int(personX.text! ) ?? -1
+        let pY = Int(personY.text! ) ?? -1
+        let bX = Int(boxX.text! ) ?? -1
+        let bY = Int(boxY.text! ) ?? -1
+        let tX = Int(targetX.text!) ?? -1
+        let tY = Int(targetY.text!) ?? -1
         
-        if pX == 0 && pY == 0 && bX == 0 && bY == 0 && tX == 0 && tY == 0 {
-            let controler = UIAlertController(title: "Error", message: "You set bad data", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            controler.addAction(action)
-            self.present(controler, animated: true, completion: nil)
+        if pX <= 0 || pY <= 0 || bX <= 0 || bY <= 0 || tX <= 0 || tY <= 0 {
+            HUD.flash(.labeledError(title: "Wrong Data", subtitle: "Change Data"), onView: self.view, delay: 3, completion: nil)
+            return
+            
+//            let controler = UIAlertController(title: "Error", message: "You set bad data", preferredStyle: .alert)
+//            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//            controler.addAction(action)
+//            self.present(controler, animated: true, completion: nil)
         }
         
         let  pl = PositionInRoom(positionX: pX, positionY: pY)
